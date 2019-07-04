@@ -1,10 +1,13 @@
-import React from 'react';
+import React from 'react';  
 import Header from '../../component/HeaderComponent/HeaderComponent';
-import Button from '../../component/ButonComponent/ButtonComponent';
+// import Button from '../../component/ButonComponent/ButtonComponent';
+
 import Search from '../../component/SearchComponent/SearchComponent';
+
 import Content from '../Content/Content';
 import FormAll from '../Content/FromAll';
-import {Container, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import {Container, Modal, ModalHeader,} from 'reactstrap';
+import Axios from 'axios';
 
 class Home extends React.Component {
 
@@ -23,9 +26,10 @@ class Home extends React.Component {
         modal: !prevState.modal
         }));
     }
+    
     render(){
         return(
-            <div>
+            <div>                
                 <Header />
                 <Container>
                 <Search />
