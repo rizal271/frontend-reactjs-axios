@@ -47,7 +47,6 @@ class Detailpage extends Component {
     }
     handleupdate = () => {
         let id = this.props.match.params.id
-        console.log('ini adalah id',id)
         Axios.patch(`http://localhost:3336/book/${id}`, this.state.formupdateBook).then((res) =>{
             console.log('rizal',res)
         }, (err)=>{

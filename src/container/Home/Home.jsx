@@ -87,7 +87,7 @@ class Home extends React.Component {
             <div>                
                 <Header />
                 <Container>
-                <Search />
+                <Search diketik ="y"/>
                 <div className="row">
                     <div className="col-md-2 offset-md-8 mt-3">
                     <input type="Button" onClick={this.toggle} className="btn btn-warning" value="ADD"/>
