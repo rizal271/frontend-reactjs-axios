@@ -1,19 +1,23 @@
 import React, { Component, Fragment } from 'react';
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import InputComp from '../../component/InputComponent/InputComponent';
 import Button from '../../component/ButonComponent/ButtonComponent';
 import TextareaComp from '../../component/TextareaComponent/TextareaComponent';
 import {ModalBody, ModalFooter } from 'reactstrap';
+import swal from 'sweetalert';
 import axios from 'axios'
 
 class FromAll extends Component {
     state = {
         forminputBook: {
             title: '',
-            description: '',
-            img_url: '',
             created_at: '',
-            updated_at: ''
-        }
+            description: '',
+            updated_at: '',
+            img_url: ''
+        },
+        modal: false,
+        redirect: false,
     }
     handlechangeforminput = (event) => {
         let forminputbookbaru = {...this.state.forminputBook}
@@ -21,9 +25,19 @@ class FromAll extends Component {
         this.setState({
             forminputBook: forminputbookbaru
         })
+        
     }
+    
     handlesubmit = () => {
         this.dataToAPI()
+        .then(() => this.setState(() => ({
+            toDashboard: true
+        })))
+        swal("Poof! Your imaginary file has been saved!", {
+            icon: "success",
+        
+        });
+        
     }
 
     dataToAPI = () =>{
@@ -54,7 +68,7 @@ class FromAll extends Component {
                 </form>
                 </ModalBody>
                 <ModalFooter>
-                    <Button clik={this.handlesubmit} class="btn btn-warning" value="Save" />
+                    <Button clik={this.toggle} class="btn btn-warning" value="Save" />
                     {/* <Button className="btn btn-warning" onClick={this.toggle}>Save</Button> */}
                 </ModalFooter>
             </Fragment>

@@ -5,6 +5,8 @@ import TextareaComp from '../../component/TextareaComponent/TextareaComponent';
 import {ModalBody, ModalFooter, Modal, ModalHeader,} from 'reactstrap';
 import './Detailpage.css';
 import swal from 'sweetalert';
+import { Redirect } from 'react-router'
+import {browserHistory} from "react-router";
 import Axios from 'axios';
 
 class Detailpage extends Component {
@@ -19,6 +21,7 @@ class Detailpage extends Component {
         },
 
         modal:false,
+        redirect: false,
 
         formupdateBook: {
             title: '',
@@ -42,18 +45,20 @@ class Detailpage extends Component {
             formupdateBook: formupdatebookbaru
         })
     }
-    handleupdate = (id) => {
-        this.dataToAPI(id)
-    }
-
-    dataToAPI = (id) =>{
-        Axios.petch(`http://localhost:3336/book/${id}`, this.state.formupdateBook).then((res) =>{
-            console.log(res)
+    handleupdate = () => {
+        let id = this.props.match.params.id
+        console.log('ini adalah id',id)
+        Axios.patch(`http://localhost:3336/book/${id}`, this.state.formupdateBook).then((res) =>{
+            console.log('rizal',res)
         }, (err)=>{
             console.log('errornya: ',err)
         })
-
+        this.toggle()
     }
+
+    // dataToAPI = (id) =>{
+
+    // }
     componentDidMount(){
         let id = this.props.match.params.id
         Axios.get(`http://localhost:3336/book/detail/${id}`).then(res =>{
@@ -84,12 +89,18 @@ class Detailpage extends Component {
               swal("Poof! Your imaginary file has been deleted!", {
                 icon: "success",
               });
+              this.setState({ redirect: true })
             } else {
               swal("Your imaginary file is safe!");
             }
           })
     }
     render(){
+    //     const { redirect } = this.state;
+
+    //  if (redirect) {
+    //    return <Redirect to='http://localhost:3336/book'/>;
+    //  }
         return(
                 <Fragment>
  <div className="jumbotron" style={{backgroundImage: `url(`+this.state.book.img_url+')'}}>

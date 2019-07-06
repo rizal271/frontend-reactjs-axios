@@ -25,10 +25,10 @@ class Content extends Component {
             })
         })
     }
-    handleDetail = (id) =>{
-        console.log(id)
-        // this.props.history.push(`/Detailpage/${id}`); // fungsi dari router dom untuk berpindah halaman
-    }
+    // handleDetail = (id) =>{
+    //     console.log(id)
+    //     // this.props.history.push(`/Detailpage/${id}`); // fungsi dari router dom untuk berpindah halaman
+    // }
     render(){
         return(
             <Fragment>
